@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const props = defineProps(['id'])
+import { ref } from "vue";
+const props = defineProps(["id"]);
 
 const data = ref({
-  path: '',
-  text: '',
-})
+  path: "",
+  text: "",
+});
 </script>
 <template>
   <div class="img-container">

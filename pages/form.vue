@@ -2,18 +2,11 @@
 import ParagraphContainer from "../components/ParagraphContainer.vue";
 import ImgContainer from "../components/ImgContainer.vue";
 import { ref } from "vue";
+import { Image, Paragraph } from "../types/types.js";
 
 type container = {
   id: number;
   type: number;
-};
-type img = {
-  path: string;
-  text: string;
-};
-type paragraph = {
-  title: string;
-  text: string;
 };
 
 let title = ref("");
@@ -21,6 +14,15 @@ let author = ref("");
 let date = ref<Date>();
 let location = ref("");
 let password = ref("");
+let content: (Paragraph | Image)[] = [];
+
+let refs = ref<
+  (
+    | InstanceType<typeof ParagraphContainer>
+    | InstanceType<typeof ImgContainer>
+  )[]
+>([]);
+let testList: any[] = [];
 
 let order = ref<container[]>([
   { id: 123, type: 1 },
@@ -45,7 +47,47 @@ function removeElement(props: container) {
 }
 
 async function sendForm() {
-  let content: paragraph | img[] = [];
+  let data = document.querySelectorAll("#blog-content-container > div > *");
+  data.forEach((element) => {
+    if (element.classList.contains("img-container")) {
+      let addContent: any = {
+        type: "img",
+      };
+      let childs = element.children;
+
+      for (let i = 0; i < childs.length; i++) {
+        if (childs[i].tagName == "LABEL") {
+          let input = childs[i].lastElementChild;
+
+          addContent[input?.className === "img-src" ? "path" : "text"] = (
+            input as HTMLInputElement
+          ).value;
+        }
+      }
+
+      content.push(addContent);
+    } else if (element.classList.contains("paragraph-container")) {
+      let childs = element.children;
+
+      let addContent: any = {
+        type: "txt",
+      };
+
+      for (let i = 0; i < childs.length; i++) {
+        if (childs[i].tagName == "LABEL") {
+          let input = childs[i].lastElementChild;
+
+          addContent[
+            input?.className === "paragraph-title" ? "title" : "text"
+          ] = (input as HTMLInputElement).value;
+        }
+      }
+
+      content.push(addContent);
+    }
+  });
+
+  console.log(content);
 
   const res = await fetch("api/form", {
     method: "POST",
@@ -79,7 +121,7 @@ async function sendForm() {
     </div>
     <div>
       <h1>Fill in this form</h1>
-      <form id="form" @submit.prevent="sendForm()">
+      <form @submit.prevent="sendForm()">
         <label for="blog-name">
           <h3>Title:</h3>
           <input
@@ -87,6 +129,7 @@ async function sendForm() {
             type="text"
             class="blog-name"
             id="title"
+            ref="data"
             required
           />
         </label>
@@ -118,11 +161,13 @@ async function sendForm() {
               v-if="content.type === 1"
               :id="content.id"
               @removeElement="removeElement"
+              ref="refs"
             />
             <ImgContainer
               v-else-if="content.type === 2"
               :id="content.id"
               @removeElement="removeElement"
+              ref="refs"
             />
           </div>
         </div>
