@@ -1,38 +1,20 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
+import { BlogPost } from '~/types/types.js'
 
-type BlogPost = {
-  timestamp: number;
-  author: string;
-  title: string;
-  location: string;
-  date: string;
-  content: (Paragraph | Image)[];
-};
+const blogs = ref<BlogPost[]>([])
 
-type Paragraph = {
-  title: string;
-  text: string;
-};
-
-type Image = {
-  path: string;
-  text: string;
-};
-
-const blogs = ref<BlogPost[]>([]);
-
-fetch("/api/blogs")
+fetch('/api/blogs')
   .then((response) => response.json())
   .then((data: BlogPost[]) => {
-    blogs.value = data;
+    blogs.value = data
 
-    blogs.value.sort((a, b) => b.timestamp - a.timestamp);
-  });
+    blogs.value.sort((a, b) => b.timestamp - a.timestamp)
+  })
 
 function redirectToIndividual(timestamp: number) {
-  localStorage.setItem("timestamp", timestamp.toString());
-  window.location.pathname = "/individual.html";
+  localStorage.setItem('timestamp', timestamp.toString())
+  window.location.pathname = '/individual.html'
 }
 </script>
 
@@ -59,6 +41,4 @@ function redirectToIndividual(timestamp: number) {
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
