@@ -7,11 +7,11 @@ const data = ref({
   text: "",
 });
 </script>
+
 <template>
   <div class="img-container">
     <label for="img-src">
-      <h3>Img Path:</h3>
-
+      <h3>Img File Name:</h3>
       <input type="text" class="img-src" required />
     </label>
 

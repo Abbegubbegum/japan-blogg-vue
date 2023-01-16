@@ -10,9 +10,11 @@ export type BlogPost = {
 export type Paragraph = {
   title: string;
   text: string;
+  type: string;
 };
 
 export type Image = {
   path: string;
   text: string;
+  type: string;
 };
