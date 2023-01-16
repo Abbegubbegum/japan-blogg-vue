@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Paragraph } from "../types/types.js";
+
 const props = defineProps(["id"]);
 
-const data = ref({
-  title: "",
-  text: "",
-});
+const data = ref({} as Paragraph);
+
+function returnData(): Paragraph {
+  return data.value;
+}
 </script>
 
 <template>
   <div class="paragraph-container">
     <label for="paragraph-title">
       <h3>Paragraph Title:</h3>
-      <input type="text" class="paragraph-title" required ref="test" />
+      <input type="text" class="paragraph-title" required />
     </label>
     <label for="paragraph-text">
       <h3>Paragraph:</h3>
