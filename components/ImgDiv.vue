@@ -4,7 +4,7 @@ const props = defineProps({ txt: String, src: String });
 
 <template>
   <div>
-    <img src="{{ props.src }}" class="blog-img" />
+    <img :src="props.src" class="blog-img" />
     <p class="img-text">{{ props.txt }}</p>
   </div>
 </template>
