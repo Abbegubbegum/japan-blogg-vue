@@ -1,20 +1,20 @@
 <template>
   <div class="about-container">
-    <p>
-      This is a simple web application made for displaying and managing
-      blog-posts for NTI Gymnasiet Stockholm Odenplan's T4-22 class' trip to
-      Kagōshima Prefecture and Tōkyō City, Japan in January of 2023.
+    <p class="about">
+      This is a simple web applicadion made by NTI Gymnasiet Odenplans High
+      School Engineer's to document their class trip to Kagōshima Prefecture and
+      Tokyo City, Japan in January of 2023.
     </p>
-    <p>
+    <p class="about">
       これは、NTI Gymnasiet Stockholm Odenplan の T4-22
       クラスの鹿児島県と東京市への 2023 年 1
       月の旅行のブログ投稿を表示および管理するために作成されたシンプルな Web
       アプリケーションです。
     </p>
-    <p>
-      Detta är en enklare webbapplikation gjord i syftet för att visa, samt
-      hantera blogginlägg för NTI Gymnasiet Stockholm Odenplans T4-22-klass'
-      klassresa till Kagōshima-prefektur och Tōkyō i januari 2023.
+    <p class="about">
+      Detta är en enklare webbapplikation gjord för av NTI Gymnasiet Stockholm
+      Odenplans TE-4 klass för att dokumentera sin klassresa til
+      Kagōshima-prefektur och Tokyo i januari 2023.
     </p>
   </div>
 </template>
@@ -22,12 +22,20 @@
 <style scoped>
 .about-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
-  width: 95%;
+  width: 80%;
   margin: 0 auto;
 }
-
-p {
-  font-size: xx-large;
+.about {
+  min-width: 20rem;
+  max-width: 30rem;
+  background-color: wheat;
+  margin: 1rem;
+  border: solid black;
+  padding: 1rem;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 1.7rem;
 }
 </style>
