@@ -1,28 +1,37 @@
 <template>
-  <div class="blog-item">
-    <div class="blog-title">
-      <p class="blog-date">{{ data.date }}</p>
-      <h2>{{ data.title }}</h2>
-      <div class="blog-subheading">
-        <p class="blog-author">By: {{ data.author }}</p>
-        <div class="location-div">
-          <img src="@/assets/icons/pin.png" alt="" width="20" />
-          <p class="blog-location">{{ data.location }}</p>
+  <div>
+    <div>
+      <nuxt-link to="/">
+        <div class="back-button">
+          <img src="@/assets/icons/arrow.png" width="70" />
+        </div>
+      </nuxt-link>
+    </div>
+    <div class="blog-item">
+      <div class="blog-title">
+        <p class="blog-date">{{ data.date }}</p>
+        <h2>{{ data.title }}</h2>
+        <div class="blog-subheading">
+          <p class="blog-author">By: {{ data.author }}</p>
+          <div class="location-div">
+            <img src="@/assets/icons/pin.png" alt="" width="20" />
+            <p class="blog-location">{{ data.location }}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="blog-content">
-      <div v-for="blog in data.content">
-        <ImgDiv
-          v-if="blog.type === 'img'"
-          :src="getPath(blog)"
-          :txt="blog.text"
-        />
-        <ParagraphDiv
-          v-else-if="blog.type === 'txt'"
-          :txt="blog.text"
-          :title="getTitle(blog)"
-        />
+      <div class="blog-content">
+        <div v-for="blog in data.content">
+          <ImgDiv
+            v-if="blog.type === 'img'"
+            :src="getPath(blog)"
+            :txt="blog.text"
+          />
+          <ParagraphDiv
+            v-else-if="blog.type === 'txt'"
+            :txt="blog.text"
+            :title="getTitle(blog)"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -82,7 +91,7 @@ export default defineComponent({
   background-color: white;
   border: 2px solid black;
   border-radius: 1rem;
-  width: 95%;
+  width: 80%;
   margin: 1rem 0;
   margin-left: auto;
   margin-right: auto;
@@ -117,9 +126,12 @@ export default defineComponent({
   margin-left: 0.3rem;
 }
 .back-button {
-  align-self: flex-start;
+  background-color: rgb(231, 250, 201);
+  width: 70px;
   margin: 1rem;
-  margin-left: 2rem;
+  margin-left: 10rem;
+  border: solid black;
+  border-radius: 10% 20%;
 }
 
 .blog-content {

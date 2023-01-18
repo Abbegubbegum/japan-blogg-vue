@@ -34,7 +34,7 @@ nav {
   place-items: center;
   background-color: #bc002d;
   margin: 1rem;
-  width: 95%;
+  width: 85%;
   border-radius: 5px;
 }
 
@@ -54,5 +54,6 @@ a {
 
 a:hover {
   background-color: #cf0030;
+  border-radius: 5px;
 }
 </style>

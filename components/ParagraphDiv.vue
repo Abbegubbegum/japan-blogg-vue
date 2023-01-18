@@ -9,15 +9,12 @@ const props = defineProps({ txt: String, title: String });
 </template>
 
 <style>
-
 .paragraph-title {
   font-size: 3rem;
   font-weight: lighter;
 }
 
 .paragraph-text {
-  max-width: 80ch;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
-
 </style>

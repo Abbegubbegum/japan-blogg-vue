@@ -14,57 +14,41 @@ fetch("/api/blogs")
 </script>
 
 <template>
-  <div id="blog-master">
-    <div id="blog-container" class="content">
-      <div class="blog-item" v-for="blog in blogs" :key="blog.timestamp">
-        <nuxt-link :to="'/blogs/' + blog.timestamp" class="nuxt">
-          <div class="blog-title">
-            <p class="blog-date">{{ blog.date }}</p>
-            <h2>{{ blog.title }}</h2>
-            <div class="blog-subheading">
-              <p class="blog-author">By: {{ blog.author }}</p>
-              <div class="location-div">
-                <img src="@/assets/icons/pin.png" width="20" />
-                <p class="blog-location">{{ blog.location }}</p>
-              </div>
+  <div id="blog-container" class="content">
+    <div class="blog-item" v-for="blog in blogs" :key="blog.timestamp">
+      <nuxt-link :to="'/blogs/' + blog.timestamp" class="nuxt">
+        <div class="blog-title">
+          <p class="blog-date">{{ blog.date }}</p>
+          <h2>{{ blog.title }}</h2>
+          <div class="blog-subheading">
+            <p class="blog-author">By: {{ blog.author }}</p>
+            <div class="location-div">
+              <img src="@/assets/icons/pin.png" width="20" />
+              <p class="blog-location">{{ blog.location }}</p>
             </div>
           </div>
-        </nuxt-link>
-      </div>
+        </div>
+      </nuxt-link>
     </div>
   </div>
 </template>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .nuxt {
   text-decoration: none;
   color: black;
 }
 
 body {
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
-  background-color: antiquewhite;
-}
-#blog-master {
-  display: flex;
-  width: 100%;
 }
 
 #blog-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 95%;
+  width: 85%;
   align-self: center;
   margin-left: auto;
   margin-right: auto;
@@ -77,12 +61,15 @@ body {
   background-color: white;
   border: 2px solid black;
   border-radius: 1rem;
-  margin: 1rem 0;
+  margin: 1rem auto 1rem auto;
+  box-shadow: 10px 15px 10px rgba(0, 0, 0, 0.728);
+  width: 95%;
 }
 
 .blog-item:hover {
   cursor: pointer;
   background-color: #eee;
+  transform: scale(1.01);
 }
 
 .blog-title h2 {

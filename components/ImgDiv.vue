@@ -16,6 +16,7 @@ const props = defineProps({ txt: String, src: String });
 }
 
 .img-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  color: rgb(167, 164, 164);
 }
 </style>
