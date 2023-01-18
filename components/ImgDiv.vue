@@ -8,3 +8,14 @@ const props = defineProps({ txt: String, src: String });
     <p class="img-text">{{ props.txt }}</p>
   </div>
 </template>
+
+<style>
+.blog-img {
+  max-width: 60rem;
+  max-height: 30rem;
+}
+
+.img-text {
+  font-size: 1.2rem;
+}
+</style>

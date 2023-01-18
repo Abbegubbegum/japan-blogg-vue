@@ -11,31 +11,25 @@ fetch("/api/blogs")
 
     blogs.value.sort((a, b) => b.timestamp - a.timestamp);
   });
-
-function redirectToIndividual(timestamp: number) {
-  localStorage.setItem("timestamp", timestamp.toString());
-  window.location.pathname = "/individual.html";
-}
 </script>
 
 <template>
-  <div id="blogContainer" class="content">
-    <div
-      class="blog-item"
-      v-for="blog in blogs"
-      :key="blog.timestamp"
-      @click=""
-    >
-      <div class="blog-title">
-        <p class="blog-date">{{ blog.date }}</p>
-        <h2>{{ blog.title }}</h2>
-        <div class="blog-subheading">
-          <p>By: {{ blog.author }}</p>
-          <div class="location-div">
-            <img src="@/assets/icons/pin.png" width="20" />
-            <p class="blog-location">{{ blog.location }}</p>
+  <div id="blog-master">
+    <div id="blog-container" class="content">
+      <div class="blog-item" v-for="blog in blogs" :key="blog.timestamp">
+        <nuxt-link :to="'/blogs/' + blog.timestamp" class="nuxt">
+          <div class="blog-title">
+            <p class="blog-date">{{ blog.date }}</p>
+            <h2>{{ blog.title }}</h2>
+            <div class="blog-subheading">
+              <p class="blog-author">By: {{ blog.author }}</p>
+              <div class="location-div">
+                <img src="@/assets/icons/pin.png" width="20" />
+                <p class="blog-location">{{ blog.location }}</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -49,6 +43,11 @@ function redirectToIndividual(timestamp: number) {
   padding: 0;
 }
 
+.nuxt {
+  text-decoration: none;
+  color: black;
+}
+
 body {
   /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "Roboto", sans-serif;
@@ -56,21 +55,22 @@ body {
   flex-direction: column;
   background-color: antiquewhite;
 }
-.back-button {
-  align-self: flex-start;
-  margin: 1rem;
-  margin-left: 2rem;
+#blog-master {
+  display: flex;
+  width: 100%;
 }
 
-#blogContainer {
+#blog-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 95%;
   align-self: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.blogItem {
+.blog-item {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@ body {
   margin: 1rem 0;
 }
 
-.blogItem:hover {
+.blog-item:hover {
   cursor: pointer;
   background-color: #eee;
 }
@@ -124,40 +124,5 @@ body {
   right: 1rem;
   top: 0.8rem;
   font-size: 1.4rem;
-}
-
-.blog-content {
-  margin: 2rem;
-  margin-top: 0;
-}
-
-.blog-content > div {
-  margin-bottom: 3rem;
-}
-
-.paragraf-title {
-  font-size: 3rem;
-  font-weight: lighter;
-}
-
-.paragraf-text {
-  max-width: 80ch;
-  font-size: 1.5rem;
-}
-
-.blog-img {
-  max-width: 60rem;
-  max-height: 30rem;
-}
-
-.img-text {
-  font-size: 1.2rem;
-}
-
-#aboutContainer {
-  display: flex;
-  font-size: xx-large;
-  width: 95%;
-  align-self: center;
 }
 </style>

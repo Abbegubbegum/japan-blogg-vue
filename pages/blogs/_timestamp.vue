@@ -1,13 +1,13 @@
 <template>
-  <div class="blogItem">
+  <div class="blog-item">
     <div class="blog-title">
       <p class="blog-date">{{ data.date }}</p>
       <h2>{{ data.title }}</h2>
       <div class="blog-subheading">
         <p class="blog-author">By: {{ data.author }}</p>
         <div class="location-div">
-          <img src="" alt="" />
-          <p class="blog-location">{{ timestamp }}</p>
+          <img src="@/assets/icons/pin.png" alt="" width="20" />
+          <p class="blog-location">{{ data.location }}</p>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@ import ParagraphDiv from "~/components/ParagraphDiv.vue";
 
 export default defineComponent({
   async asyncData({ params }) {
-    const timestamp = params.timestamp; // When calling /abc the slug will be "abc"
+    const timestamp = params.timestamp;
     return { timestamp };
   },
   data() {
@@ -44,7 +44,7 @@ export default defineComponent({
       data: {
         title: "",
         author: "",
-        date: {} as Date,
+        date: "",
         location: "",
         content: [] as (Image | Paragraph)[],
       },
@@ -57,7 +57,7 @@ export default defineComponent({
       fetch("/api/blogs?timestamp=" + this.timestamp)
         .then((res) => res.json())
         .then((rdata) => {
-          rdata = this.data;
+          this.data = rdata;
         });
     },
     getPath(blog: Paragraph | Image) {
@@ -73,3 +73,68 @@ export default defineComponent({
   components: { ImgDiv, ParagraphDiv },
 });
 </script>
+
+<style scoped>
+.blog-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 1rem;
+  width: 95%;
+  margin: 1rem 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.blog-title h2 {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+.blog-title {
+  margin: 2rem;
+}
+.blog-date {
+  position: absolute;
+  right: 1rem;
+  top: 0.8rem;
+  font-size: 1.4rem;
+}
+.blog-author {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.location-div {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.blog-location {
+  font-size: 1.3rem;
+  letter-spacing: 0rem;
+  margin-left: 0.3rem;
+}
+.back-button {
+  align-self: flex-start;
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.blog-content {
+  margin: 2rem;
+  margin-top: 0;
+}
+
+.blog-content > div {
+  margin-bottom: 3rem;
+}
+
+.blog-subheading {
+  margin-top: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+</style>
