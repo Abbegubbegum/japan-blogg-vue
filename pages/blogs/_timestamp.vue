@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import { Image, Paragraph } from "@/types/types.js";
-import ImgDiv from "@/components/ImgDiv.vue";
-import { defineComponent } from "vue";
-import ParagraphDiv from "~/components/ParagraphDiv.vue";
-</script>
-
 <template>
   <div class="blogItem">
     <div class="blog-title">
@@ -36,6 +29,11 @@ import ParagraphDiv from "~/components/ParagraphDiv.vue";
 </template>
 
 <script lang="ts">
+import { Image, Paragraph } from "@/types/types.js";
+import ImgDiv from "@/components/ImgDiv.vue";
+import { defineComponent } from "vue";
+import ParagraphDiv from "~/components/ParagraphDiv.vue";
+
 export default defineComponent({
   async asyncData({ params }) {
     const timestamp = params.timestamp; // When calling /abc the slug will be "abc"
@@ -50,7 +48,7 @@ export default defineComponent({
         location: "",
         content: [] as (Image | Paragraph)[],
       },
-      timestamp: "t",
+      timestamp: "",
     };
   },
   methods: {
