@@ -18,6 +18,11 @@ h3 {
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+	max-width: 80ch;
+}
+
+p + p {
+	margin-top: 2rem;
 }
 </style>
