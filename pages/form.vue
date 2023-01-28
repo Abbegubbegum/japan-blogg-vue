@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import ParagraphContainer from "../components/ParagraphContainer.vue";
-import ImgContainer from "../components/ImgContainer.vue";
-import { ref } from "vue";
+import ParagraphInput from "../components/ParagraphInput.vue";
+import ImgInput from "../components/ImgInput.vue";
 import { Image, Paragraph } from "../types/types.js";
 
-type container = {
+type Container = {
   id: number;
   type: number;
 };
@@ -16,15 +15,7 @@ let location = ref("");
 let password = ref("");
 let content: (Paragraph | Image)[] = [];
 
-let refs = ref<
-  (
-    | InstanceType<typeof ParagraphContainer>
-    | InstanceType<typeof ImgContainer>
-  )[]
->([]);
-let testList: any[] = [];
-
-let order = ref<container[]>([
+let order = ref<Container[]>([
   { id: 123, type: 1 },
   { id: 321, type: 2 },
 ]);
@@ -36,12 +27,9 @@ function addIMG() {
   order.value.push({ id: Math.floor(Math.random() * 10000), type: 2 });
 }
 
-function removeElement(props: container) {
-  console.log(props);
-  console.log();
+function removeElement(props: Container) {
   let pos = order.value.findIndex((t) => t.id === props.id);
   if (pos !== -1) {
-    console.log(pos);
     order.value.splice(pos, 1);
   }
 }
@@ -87,54 +75,52 @@ async function sendForm() {
     }
   });
 
-  console.log(content);
-
-  const res = await fetch("api/form", {
+  const res = await useFetch("/api/form", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      title: title,
-      author: author,
-      location: location,
-      date: date,
+      title: title.value,
+      author: author.value,
+      location: location.value,
+      date: date.value,
       content: content,
-      password: password,
+      password: password.value,
     }),
   });
-
-  if (res.ok && res.status === 200) {
-    alert(await res.text());
-    window.location.pathname = "/";
-  } else {
-    alert(await res.text());
+  
+  if (res.error.value) {
+    alert(res.data)
+    return;
   }
+
+    alert("Blog added successfully!");
+    useRouter().push("/");
+  
 }
 </script>
 
 <template>
   <div>
-    <div>
+    <div class="button-container">
       <button class="addButtons" @click="addParagraph">Add paragraph</button>
       <button class="addButtons" @click="addIMG">Add IMG</button>
     </div>
-    <div>
-      <h1>Fill in this form</h1>
-      <form @submit.prevent="sendForm()">
-        <label for="blog-name">
+    <form @submit.prevent="sendForm()">
+        <h1>Fill in this form</h1>
+        <label>
           <h3>Title:</h3>
           <input
             v-model="title"
             type="text"
             class="blog-name"
             id="title"
-            ref="data"
             required
           />
         </label>
 
-        <label for="blog-author">
+        <label>
           <h3>Author:</h3>
           <input
             v-model="author"
@@ -145,34 +131,32 @@ async function sendForm() {
           />
         </label>
 
-        <label for="date-input">
+        <label>
           <h3>Date:</h3>
           <input v-model="date" type="date" required />
         </label>
 
-        <label for="location-input">
+        <label>
           <h3>Location:</h3>
           <input v-model="location" type="text" id="location" required />
         </label>
 
         <div id="blog-content-container">
           <div v-for="content in order">
-            <ParagraphContainer
+            <ParagraphInput
               v-if="content.type === 1"
               :id="content.id"
               @removeElement="removeElement"
-              ref="refs"
             />
-            <ImgContainer
+            <ImgInput
               v-else-if="content.type === 2"
               :id="content.id"
               @removeElement="removeElement"
-              ref="refs"
             />
           </div>
         </div>
 
-        <label for="password-input" id="password-container">
+        <label>
           <h3>Password:</h3>
           <input
             v-model="password"
@@ -182,14 +166,21 @@ async function sendForm() {
           />
         </label>
 
-        <label for="submit">
-          <button type="submit" class="submit-button">Submit</button>
-        </label>
+        <button type="submit" class="submit-button">Submit</button>
       </form>
     </div>
-  </div>
 </template>
+
 <style>
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    text-align: center;
+}
+
 input[type="text"] {
   border-radius: 5px;
   padding: 2.5px;
@@ -202,13 +193,6 @@ input[type="date"] {
   margin: 10px;
 }
 
-.paragraph-text {
-  border: 2.2px solid black;
-  border-radius: 5px;
-  padding: 2.5px;
-  margin: 10px;
-}
-
 input[type="password"] {
   border-radius: 5px;
   padding: 2.5px;
@@ -216,54 +200,10 @@ input[type="password"] {
   max-width: 60%;
 }
 
-.RMElementButton {
-  border-radius: 5px;
-  padding: 2.5px;
-  margin: 10px;
-  max-width: 10%;
-  padding: 5px;
-}
-
-.paragraph-container {
-  background-color: rgb(230, 227, 227);
-  padding-top: 2px;
-  padding-left: 7.5px;
-  padding-right: 7.5px;
-  padding-bottom: 7.5px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.img-container {
-  background-color: rgb(230, 227, 227);
-  padding: 10px;
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-body {
-  text-align: center;
-}
-
-.submit-container {
-  display: flex;
-  justify-content: center;
-  padding: 5px;
-}
-
 .submit-button {
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 5px;
-}
-
-.paragraph-button {
-  padding: 10px;
-  margin: 5px;
 }
 
 #password-container {
@@ -274,6 +214,14 @@ body {
 
 .addButtons {
   margin: 5px;
+  padding: 5px;
+}
+
+.rm-component-button {
+  border-radius: 5px;
+  padding: 2.5px;
+  margin: 10px;
+  max-width: 10%;
   padding: 5px;
 }
 </style>

@@ -4,18 +4,18 @@ const props = defineProps({ txt: String, src: String });
 
 <template>
   <div>
-    <img :src="props.src" class="blog-img" />
-    <p class="img-text">{{ props.txt }}</p>
+    <img :src="props.src" />
+    <p>{{ props.txt }}</p>
   </div>
 </template>
 
-<style>
-.blog-img {
+<style scoped>
+img {
   max-width: 60rem;
   max-height: 30rem;
 }
 
-.img-text {
+p {
   font-size: 1.1rem;
   color: rgb(167, 164, 164);
 }

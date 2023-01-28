@@ -1,16 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { BlogPost } from "~/types/types.js";
+const { data: blogs } = await useFetch("/api/blogs");
 
-const blogs = ref<BlogPost[]>([]);
 
-fetch("/api/blogs")
-  .then((response) => response.json())
-  .then((data: BlogPost[]) => {
-    blogs.value = data;
-
-    blogs.value.sort((a, b) => b.timestamp - a.timestamp);
-  });
 </script>
 
 <template>
