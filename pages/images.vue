@@ -7,10 +7,9 @@ const { data: images } = await useFetch("/api/images");
 <template>
   <div class="img-wrapper">
     <div class="img-container">
-      <img
-        v-for="image in images"
-        :src="'https://japanblog-imgs.s3.eu-central-1.amazonaws.com/' + image"
-      />
+      <a v-for="image in images" :href="'https://japanblog-imgs.s3.eu-central-1.amazonaws.com/' + image" target="_blank">
+        <img :src="'https://japanblog-imgs.s3.eu-central-1.amazonaws.com/' + image"/>
+      </a>
     </div>
   </div>
 </template>
