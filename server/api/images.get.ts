@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
     const miscImgs = await getImages();
 
     miscImgs.forEach((miscImg) => {
-        if (!images.find((img) => img !== miscImg)) {
+        if (!images.find((img) => img === miscImg)) {
             images.push(miscImg);
         }
     });
