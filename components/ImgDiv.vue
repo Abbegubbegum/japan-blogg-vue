@@ -17,6 +17,6 @@ img {
 
 p {
   font-size: 1.1rem;
-  color: rgb(167, 164, 164);
+  color: #666;
 }
 </style>

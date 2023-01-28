@@ -18,6 +18,7 @@ const { data: images } = await useFetch("/api/images");
 <style scoped>
 .img-wrapper {
   width: 95%;
+  margin: 0 auto;
 }
 
 .img-container {
@@ -27,6 +28,6 @@ const { data: images } = await useFetch("/api/images");
 }
 
 img {
-  max-height: 20rem;
+  max-height: 18rem;
 }
 </style>

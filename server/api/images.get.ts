@@ -13,6 +13,13 @@ const s3 = new aws.S3();
 export default defineEventHandler(async (event) => {
     const blogs = await blogModel.find({});
 
+    blogs.sort((a, b) => {
+        const aInt = parseInt(a.date.slice(-2));
+        const bInt = parseInt(b.date.slice(-2));
+
+        return aInt - bInt;
+    });
+
     const images: string[] = [];
 
     blogs.forEach((blog) => {
