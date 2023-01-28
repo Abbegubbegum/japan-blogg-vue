@@ -1,11 +1,13 @@
 <script setup lang="ts">
 const props = defineProps({ txt: String, title: String });
+
+const paragraphs = props.txt?.split("\n");
 </script>
 
 <template>
   <div>
     <h3>{{ props.title }}</h3>
-    <p>{{ props.txt }}</p>
+    <p v-for="paragraph in paragraphs">{{ paragraph }}</p>
   </div>
 </template>
 
