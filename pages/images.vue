@@ -24,6 +24,7 @@ const { data: images } = await useFetch("/api/images");
 .img-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   gap: 1rem;
 }
 
