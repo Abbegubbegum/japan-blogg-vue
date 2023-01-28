@@ -103,10 +103,6 @@ async function sendForm() {
 
 <template>
   <div>
-    <div class="button-container">
-      <button class="addButtons" @click="addParagraph">Add paragraph</button>
-      <button class="addButtons" @click="addIMG">Add IMG</button>
-    </div>
     <form @submit.prevent="sendForm()">
         <h1>Fill in this form</h1>
         <label>
@@ -154,6 +150,11 @@ async function sendForm() {
               @removeElement="removeElement"
             />
           </div>
+        </div>
+
+        <div class="button-container">
+          <button class="addButtons" @click="addParagraph" type="button">Add paragraph</button>
+          <button class="addButtons" @click="addIMG" type="button">Add IMG</button>
         </div>
 
         <label>
