@@ -75,6 +75,7 @@ async function sendForm() {
     }
   });
 
+  // @ts-ignore
   const res = await useFetch("/api/form", {
     method: "POST",
     headers: {
