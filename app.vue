@@ -4,9 +4,9 @@
       <h1>Japan Blogg NTIG T4-22</h1>
 
       <nav>
-        <NuxtLink to="/"><p>HOME</p></NuxtLink>
-        <NuxtLink to="/images"><p>IMAGES</p></NuxtLink>
-        <NuxtLink to="/about"><p>ABOUT</p></NuxtLink>
+        <NuxtLink to="/" class="link">HOME</NuxtLink>
+        <NuxtLink to="/images" class="link">IMAGES</NuxtLink>
+        <NuxtLink to="/about" class="link">ABOUT</NuxtLink>
       </nav>
     </header>
 
@@ -38,18 +38,13 @@ nav {
   border-radius: 5px;
 }
 
-a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.link {
   width: 100%;
-  height: 100%;
   color: white;
-  margin: 0.5rem;
+  padding: 0.5rem;
   text-decoration: none;
-  width: 100%;
-  height: 100%;
   text-align: center;
+  font-size: 1.2rem;
 }
 
 a:hover {

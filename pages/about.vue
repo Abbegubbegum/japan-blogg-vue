@@ -1,8 +1,8 @@
 <template>
   <div>
     <p>
-      This is a simple web applicadion made by NTI Gymnasiet Odenplans High
-      School Engineer's to document their class trip to Kagōshima Prefecture and
+      This is a simple web application made by NTI Gymnasiet Odenplans High
+      School Engineers to document their class trip to Kagōshima Prefecture and
       Tokyo City, Japan in January of 2023.
     </p>
     <p>
@@ -13,7 +13,7 @@
     </p>
     <p>
       Detta är en enklare webbapplikation gjord för av NTI Gymnasiet Stockholm
-      Odenplans TE-4 klass för att dokumentera sin klassresa til
+      Odenplans TE-4 klass för att dokumentera sin klassresa till
       Kagōshima-prefektur och Tokyo i januari 2023.
     </p>
   </div>

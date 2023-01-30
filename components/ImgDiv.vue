@@ -11,7 +11,7 @@ const props = defineProps({ txt: String, src: String });
 
 <style scoped>
 img {
-  max-width: 60rem;
+  max-width: 80%;
   max-height: 30rem;
 }
 
