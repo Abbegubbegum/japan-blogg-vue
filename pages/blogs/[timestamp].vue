@@ -18,7 +18,7 @@ blog.value = data.value;
 
 <template>
   <div>
-    <nuxt-link to="/" class="back-button"> ⬅ </nuxt-link>
+    <nuxt-link to="/" class="back-button">⬅</nuxt-link>
     <!-- <img src="@/assets/icons/arrow.png" width="70" /> -->
     <div class="blog-item">
       <div class="blog-title">
@@ -68,7 +68,6 @@ blog.value = data.value;
   font-weight: 700;
   letter-spacing: 0.1rem;
 }
-
 .blog-title {
   margin: 2rem;
 }
@@ -94,7 +93,7 @@ blog.value = data.value;
 }
 .back-button {
   display: flex;
-  top: 8rem;
+  top: 15vh;
   left: 5vw;
   background-color: rgb(255, 255, 255, 0.7);
   position: fixed;
@@ -104,7 +103,7 @@ blog.value = data.value;
   height: 80px;
   border: 2px solid #9f0025;
   border-radius: 10px;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-decoration: none;
   color: #111;
 }
